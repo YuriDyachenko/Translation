@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="@dimen/margin_5"
+    android:foreground="?attr/selectableItemBackground"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/words_text_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="@dimen/margin_5"
+        android:textColor="?attr/colorPrimary"
+        android:textSize="@dimen/words_text_text_size"
+        tools:text="word" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/words_meanings_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/margin_5"
+        android:textColor="?attr/colorPrimaryDark"
+        android:textSize="@dimen/words_meanings_text_size"
+        tools:text="meaning" />
+
+</LinearLayout>
