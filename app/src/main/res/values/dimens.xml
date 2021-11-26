@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="margin_10">10dp</dimen>
+    <dimen name="words_text_text_size">22sp</dimen>
+    <dimen name="words_meanings_text_size">18sp</dimen>
+    <dimen name="margin_5">5dp</dimen>
+    <dimen name="bottom_sheet_search_dialog_layout_height">200dp</dimen>
+</resources>
