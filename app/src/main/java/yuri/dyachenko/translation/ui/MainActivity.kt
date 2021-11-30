@@ -1,11 +1,11 @@
 package yuri.dyachenko.translation.ui
 
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.github.terrakok.cicerone.androidx.AppNavigator
-import moxy.MvpAppCompatActivity
 import yuri.dyachenko.translation.app
 
-class MainActivity : MvpAppCompatActivity() {
+class MainActivity : AppCompatActivity() {
 
     private val navigator = AppNavigator(this, android.R.id.content)
 
