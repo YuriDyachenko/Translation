@@ -11,10 +11,17 @@ import yuri.dyachenko.translation.*
 import yuri.dyachenko.translation.databinding.FragmentWordsBinding
 import yuri.dyachenko.translation.ui.base.BaseFragment
 import yuri.dyachenko.translation.ui.search.SearchDialogFragment
+import yuri.dyachenko.translation.ui.utils.app
+import yuri.dyachenko.translation.ui.utils.hide
+import yuri.dyachenko.translation.ui.utils.show
+import javax.inject.Inject
 
 class WordsFragment : BaseFragment(R.layout.fragment_words) {
 
     private val binding by viewBinding(FragmentWordsBinding::bind)
+
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
 
     private lateinit var viewModel: WordsViewModel
 
@@ -22,6 +29,11 @@ class WordsFragment : BaseFragment(R.layout.fragment_words) {
 
     fun getData() {
         viewModel.getData(app.searchWord)
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        app.dagger.inject(this)
+        super.onCreate(savedInstanceState)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -32,7 +44,7 @@ class WordsFragment : BaseFragment(R.layout.fragment_words) {
     }
 
     private fun initViewModel() {
-        viewModel = ViewModelProvider(this).get(WordsViewModel::class.java)
+        viewModel = ViewModelProvider(this, viewModelFactory).get(WordsViewModel::class.java)
         val observer = Observer<Contract.State> {
             renderData(it)
         }

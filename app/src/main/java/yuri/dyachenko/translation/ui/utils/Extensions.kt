@@ -1,9 +1,10 @@
-package yuri.dyachenko.translation
+package yuri.dyachenko.translation.ui.utils
 
 import android.content.Context
 import android.view.View
 import androidx.fragment.app.Fragment
 import com.google.android.material.snackbar.Snackbar
+import yuri.dyachenko.translation.App
 
 val Context.app: App
     get() = applicationContext as App

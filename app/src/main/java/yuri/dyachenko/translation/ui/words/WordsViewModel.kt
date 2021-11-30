@@ -2,18 +2,17 @@ package yuri.dyachenko.translation.ui.words
 
 import androidx.lifecycle.MutableLiveData
 import io.reactivex.rxkotlin.subscribeBy
-import yuri.dyachenko.translation.api.SkyEngApiFactory
-import yuri.dyachenko.translation.impl.RetrofitDataProviderImpl
 import yuri.dyachenko.translation.model.DataProvider
-import yuri.dyachenko.translation.scheduler.DefaultSchedulers
 import yuri.dyachenko.translation.scheduler.Schedulers
 import yuri.dyachenko.translation.ui.base.BaseViewModel
+import javax.inject.Inject
 
-class WordsViewModel(
-    private val liveDataToObserve: MutableLiveData<Contract.State> = MutableLiveData(),
-    private val dataProvider: DataProvider = RetrofitDataProviderImpl(SkyEngApiFactory.create()),
-    private val schedulers: Schedulers = DefaultSchedulers()
+class WordsViewModel @Inject constructor(
+    private val dataProvider: DataProvider,
+    private val schedulers: Schedulers
 ) : BaseViewModel() {
+
+    private val liveDataToObserve: MutableLiveData<Contract.State> = MutableLiveData()
 
     fun getLiveData() = liveDataToObserve
 

@@ -1,14 +1,24 @@
 package yuri.dyachenko.translation
 
 import android.app.Application
-import com.github.terrakok.cicerone.Cicerone
-import com.github.terrakok.cicerone.Router
+import yuri.dyachenko.translation.di.AppComponent
+import yuri.dyachenko.translation.di.DaggerAppComponent
 
 class App : Application() {
 
     var searchWord = ""
 
-    private val cicerone: Cicerone<Router> by lazy { Cicerone.create() }
-    val navigatorHolder = cicerone.getNavigatorHolder()
-    val router = cicerone.router
+    lateinit var dagger: AppComponent
+
+    override fun onCreate() {
+        super.onCreate()
+        initDagger()
+    }
+
+    private fun initDagger() {
+        dagger = DaggerAppComponent
+            .builder()
+            .application(this)
+            .build()
+    }
 }

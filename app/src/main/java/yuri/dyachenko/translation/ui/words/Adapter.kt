@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import yuri.dyachenko.translation.R
 import yuri.dyachenko.translation.databinding.WordsItemLayoutBinding
 import yuri.dyachenko.translation.model.Word
-import yuri.dyachenko.translation.model.meaningsToString
+import yuri.dyachenko.translation.ui.utils.meaningsToString
 
 class Adapter : RecyclerView.Adapter<Adapter.ViewHolder>() {
 

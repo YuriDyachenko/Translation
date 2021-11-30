@@ -6,7 +6,7 @@ import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import com.google.android.material.snackbar.Snackbar
 import yuri.dyachenko.translation.R
-import yuri.dyachenko.translation.showSnackBar
+import yuri.dyachenko.translation.ui.utils.showSnackBar
 
 abstract class BaseFragment(
     contentLayoutId: Int,
