@@ -1,26 +1,39 @@
 package yuri.dyachenko.translation.ui
 
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import com.github.terrakok.cicerone.NavigatorHolder
+import com.github.terrakok.cicerone.Router
 import com.github.terrakok.cicerone.androidx.AppNavigator
-import moxy.MvpAppCompatActivity
-import yuri.dyachenko.translation.app
+import yuri.dyachenko.translation.ui.utils.app
+import javax.inject.Inject
 
-class MainActivity : MvpAppCompatActivity() {
+class MainActivity : AppCompatActivity() {
 
     private val navigator = AppNavigator(this, android.R.id.content)
 
+    @Inject
+    lateinit var navigatorHolder: NavigatorHolder
+
+    @Inject
+    lateinit var router: Router
+
+    @Inject
+    lateinit var screens: Screens
+
     override fun onResumeFragments() {
         super.onResumeFragments()
-        app.navigatorHolder.setNavigator(navigator)
+        navigatorHolder.setNavigator(navigator)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        savedInstanceState ?: app.router.newRootScreen(Screens.words())
+        app.dagger.inject(this)
+        savedInstanceState ?: router.newRootScreen(screens.words())
     }
 
     override fun onPause() {
-        app.navigatorHolder.removeNavigator()
+        navigatorHolder.removeNavigator()
         super.onPause()
     }
 }

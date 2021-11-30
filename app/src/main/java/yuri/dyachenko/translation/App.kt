@@ -1,19 +1,24 @@
 package yuri.dyachenko.translation
 
 import android.app.Application
-import com.github.terrakok.cicerone.Cicerone
-import com.github.terrakok.cicerone.Router
-import yuri.dyachenko.translation.api.SkyEngApiFactory
-import yuri.dyachenko.translation.impl.RetrofitDataProviderImpl
-import yuri.dyachenko.translation.model.DataProvider
+import yuri.dyachenko.translation.di.AppComponent
+import yuri.dyachenko.translation.di.DaggerAppComponent
 
 class App : Application() {
 
     var searchWord = ""
 
-    val dataProvider: DataProvider = RetrofitDataProviderImpl(SkyEngApiFactory.create())
+    lateinit var dagger: AppComponent
 
-    private val cicerone: Cicerone<Router> by lazy { Cicerone.create() }
-    val navigatorHolder = cicerone.getNavigatorHolder()
-    val router = cicerone.router
+    override fun onCreate() {
+        super.onCreate()
+        initDagger()
+    }
+
+    private fun initDagger() {
+        dagger = DaggerAppComponent
+            .builder()
+            .application(this)
+            .build()
+    }
 }

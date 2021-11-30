@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Translator 01</string>
+    <string name="app_name">Translator 02</string>
     <string name="something_broke">Something broke</string>
     <string name="reload">Reload</string>
     <string name="words_fab_content_description">Enter new word for search</string>

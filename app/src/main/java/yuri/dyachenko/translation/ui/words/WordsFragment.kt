@@ -2,37 +2,54 @@ package yuri.dyachenko.translation.ui.words
 
 import android.os.Bundle
 import android.view.View
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
-import moxy.ktx.moxyPresenter
 import yuri.dyachenko.translation.*
 import yuri.dyachenko.translation.databinding.FragmentWordsBinding
-import yuri.dyachenko.translation.scheduler.DefaultSchedulers
 import yuri.dyachenko.translation.ui.base.BaseFragment
 import yuri.dyachenko.translation.ui.search.SearchDialogFragment
+import yuri.dyachenko.translation.ui.utils.app
+import yuri.dyachenko.translation.ui.utils.hide
+import yuri.dyachenko.translation.ui.utils.show
+import javax.inject.Inject
 
-class WordsFragment : BaseFragment(R.layout.fragment_words), Contract.View {
+class WordsFragment : BaseFragment(R.layout.fragment_words) {
 
     private val binding by viewBinding(FragmentWordsBinding::bind)
 
-    private val presenter by moxyPresenter {
-        Presenter(
-            app.dataProvider,
-            DefaultSchedulers()
-        )
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
+
+    private lateinit var viewModel: WordsViewModel
+
+    private val adapter = Adapter()
+
+    fun getData() {
+        viewModel.getData(app.searchWord)
     }
 
-    private val adapter by lazy { Adapter(presenter) }
-
-    override fun getData() {
-        presenter.onDataReady(app.searchWord)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        app.dagger.inject(this)
+        super.onCreate(savedInstanceState)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initViewModel()
         initRecycler()
         initSearchFab()
+    }
+
+    private fun initViewModel() {
+        viewModel = ViewModelProvider(this, viewModelFactory).get(WordsViewModel::class.java)
+        val observer = Observer<Contract.State> {
+            renderData(it)
+        }
+        viewModel.getLiveData().observe(viewLifecycleOwner, observer)
+        getData()
     }
 
     private fun initSearchFab() = with(binding) {
@@ -54,7 +71,7 @@ class WordsFragment : BaseFragment(R.layout.fragment_words), Contract.View {
         adapter = this@WordsFragment.adapter
     }
 
-    override fun setState(state: Contract.State) =
+    private fun renderData(state: Contract.State) =
         when (state) {
             is Contract.State.Success -> setState(state)
             is Contract.State.Error -> setState(state)
@@ -70,7 +87,7 @@ class WordsFragment : BaseFragment(R.layout.fragment_words), Contract.View {
     private fun setState(state: Contract.State.Error) = with(binding) {
         wordsLoadingLayout.hide()
         wordsSearchFab.hide()
-        showErrorSnackBar(wordsRootView, state.e) { presenter.onError() }
+        showErrorSnackBar(wordsRootView, state.e) { getData() }
     }
 
     private fun setState() = with(binding) {

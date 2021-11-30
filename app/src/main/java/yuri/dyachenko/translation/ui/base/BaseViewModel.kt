@@ -1,23 +1,19 @@
 package yuri.dyachenko.translation.ui.base
 
+import androidx.lifecycle.ViewModel
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
-import moxy.MvpPresenter
-import moxy.MvpView
 
-abstract class BasePresenter<V : MvpView> : MvpPresenter<V>() {
+open class BaseViewModel : ViewModel() {
 
     private val disposables = CompositeDisposable()
-
-    override fun onDestroy() {
-        super.onDestroy()
-        disposables.clear()
-    }
 
     fun Disposable.autoDispose() {
         disposables.add(this)
     }
 
-    abstract fun onError()
-    abstract fun onUpdate()
+    override fun onCleared() {
+        disposables.clear()
+        super.onCleared()
+    }
 }

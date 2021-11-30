@@ -3,15 +3,15 @@ package yuri.dyachenko.translation.ui.base
 import android.os.Bundle
 import android.view.View
 import androidx.activity.OnBackPressedCallback
+import androidx.fragment.app.Fragment
 import com.google.android.material.snackbar.Snackbar
-import moxy.MvpAppCompatFragment
 import yuri.dyachenko.translation.R
-import yuri.dyachenko.translation.showSnackBar
+import yuri.dyachenko.translation.ui.utils.showSnackBar
 
 abstract class BaseFragment(
     contentLayoutId: Int,
     private val blockBackPressed: Boolean = false
-) : MvpAppCompatFragment(contentLayoutId) {
+) : Fragment(contentLayoutId) {
 
     private val backPressedCallback = object : OnBackPressedCallback(false) {
         override fun handleOnBackPressed() {

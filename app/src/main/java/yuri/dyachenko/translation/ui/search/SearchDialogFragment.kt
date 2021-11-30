@@ -9,8 +9,8 @@ import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import yuri.dyachenko.translation.databinding.FragmentSearchDialogBinding
-import yuri.dyachenko.translation.hide
-import yuri.dyachenko.translation.show
+import yuri.dyachenko.translation.ui.utils.hide
+import yuri.dyachenko.translation.ui.utils.show
 
 class SearchDialogFragment : BottomSheetDialogFragment() {
 
