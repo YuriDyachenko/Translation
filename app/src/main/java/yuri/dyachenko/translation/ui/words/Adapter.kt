@@ -9,7 +9,7 @@ import yuri.dyachenko.translation.databinding.WordsItemLayoutBinding
 import yuri.dyachenko.translation.model.Word
 import yuri.dyachenko.translation.model.meaningsToString
 
-class Adapter(private val presenter: Presenter) : RecyclerView.Adapter<Adapter.ViewHolder>() {
+class Adapter : RecyclerView.Adapter<Adapter.ViewHolder>() {
 
     private var words: MutableList<Word> = mutableListOf()
 
