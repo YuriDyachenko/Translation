@@ -5,9 +5,8 @@ import io.reactivex.rxkotlin.subscribeBy
 import yuri.dyachenko.translation.model.DataProvider
 import yuri.dyachenko.translation.scheduler.Schedulers
 import yuri.dyachenko.translation.ui.base.BaseViewModel
-import javax.inject.Inject
 
-class WordsViewModel @Inject constructor(
+class WordsViewModel(
     private val dataProvider: DataProvider,
     private val schedulers: Schedulers
 ) : BaseViewModel() {
