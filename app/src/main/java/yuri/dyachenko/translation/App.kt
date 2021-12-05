@@ -7,7 +7,6 @@ import org.koin.core.context.startKoin
 import org.koin.core.logger.Level
 import yuri.dyachenko.translation.di.ciceroneModule
 import yuri.dyachenko.translation.di.retrofitModule
-import yuri.dyachenko.translation.di.schedulersModule
 import yuri.dyachenko.translation.di.viewModelModule
 
 class App : Application() {
@@ -24,7 +23,6 @@ class App : Application() {
             androidLogger(Level.ERROR)
             androidContext(this@App)
             modules(
-                schedulersModule,
                 ciceroneModule,
                 retrofitModule,
                 viewModelModule

@@ -1,14 +1,14 @@
 package yuri.dyachenko.translation.ui.words
 
 import androidx.lifecycle.MutableLiveData
-import io.reactivex.rxkotlin.subscribeBy
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import yuri.dyachenko.translation.model.DataProvider
-import yuri.dyachenko.translation.scheduler.Schedulers
 import yuri.dyachenko.translation.ui.base.BaseViewModel
 
 class WordsViewModel(
-    private val dataProvider: DataProvider,
-    private val schedulers: Schedulers
+    private val dataProvider: DataProvider
 ) : BaseViewModel() {
 
     private val liveDataToObserve: MutableLiveData<Contract.State> = MutableLiveData()
@@ -23,13 +23,21 @@ class WordsViewModel(
             return
         }
 
-        dataProvider
-            .search(searchWord)
-            .subscribeOn(schedulers.background())
-            .observeOn(schedulers.main())
-            .subscribeBy(
-                onSuccess = { liveDataToObserve.value = Contract.State.Success(it) },
-                onError = { liveDataToObserve.value = Contract.State.Error(it) }
-            ).autoDispose()
+        cancelJob()
+
+        viewModelCoroutineScope.launch {
+            withContext(Dispatchers.IO) {
+                liveDataToObserve.postValue(Contract.State.Success(dataProvider.search(searchWord)))
+            }
+        }
+    }
+
+    override fun handlerError(t: Throwable) {
+        liveDataToObserve.value = Contract.State.Error(t)
+    }
+
+    override fun onCleared() {
+        liveDataToObserve.value = Contract.State.Success(listOf())
+        super.onCleared()
     }
 }

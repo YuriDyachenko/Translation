@@ -1,6 +1,6 @@
 package yuri.dyachenko.translation.api
 
-import io.reactivex.Single
+import kotlinx.coroutines.Deferred
 import retrofit2.http.GET
 import retrofit2.http.Query
 import yuri.dyachenko.translation.model.Word
@@ -8,5 +8,5 @@ import yuri.dyachenko.translation.model.Word
 interface SkyEngApi {
 
     @GET("words/search")
-    fun search(@Query("search") wordToSearch: String): Single<List<Word>>
+    fun searchAsync(@Query("search") wordToSearch: String): Deferred<List<Word>>
 }
