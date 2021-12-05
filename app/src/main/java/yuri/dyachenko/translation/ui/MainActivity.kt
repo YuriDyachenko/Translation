@@ -5,21 +5,17 @@ import androidx.appcompat.app.AppCompatActivity
 import com.github.terrakok.cicerone.NavigatorHolder
 import com.github.terrakok.cicerone.Router
 import com.github.terrakok.cicerone.androidx.AppNavigator
-import yuri.dyachenko.translation.ui.utils.app
-import javax.inject.Inject
+import org.koin.android.ext.android.inject
 
 class MainActivity : AppCompatActivity() {
 
     private val navigator = AppNavigator(this, android.R.id.content)
 
-    @Inject
-    lateinit var navigatorHolder: NavigatorHolder
+    private val navigatorHolder by inject<NavigatorHolder>()
 
-    @Inject
-    lateinit var router: Router
+    private val router by inject<Router>()
 
-    @Inject
-    lateinit var screens: Screens
+    private val screens by inject<Screens>()
 
     override fun onResumeFragments() {
         super.onResumeFragments()
@@ -28,7 +24,6 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        app.dagger.inject(this)
         savedInstanceState ?: router.newRootScreen(screens.words())
     }
 

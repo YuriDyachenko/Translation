@@ -3,10 +3,10 @@ package yuri.dyachenko.translation.ui.words
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import yuri.dyachenko.translation.*
 import yuri.dyachenko.translation.databinding.FragmentWordsBinding
 import yuri.dyachenko.translation.ui.base.BaseFragment
@@ -14,26 +14,17 @@ import yuri.dyachenko.translation.ui.search.SearchDialogFragment
 import yuri.dyachenko.translation.ui.utils.app
 import yuri.dyachenko.translation.ui.utils.hide
 import yuri.dyachenko.translation.ui.utils.show
-import javax.inject.Inject
 
 class WordsFragment : BaseFragment(R.layout.fragment_words) {
 
     private val binding by viewBinding(FragmentWordsBinding::bind)
 
-    @Inject
-    lateinit var viewModelFactory: ViewModelProvider.Factory
-
-    private lateinit var viewModel: WordsViewModel
+    private val wordsViewModel by viewModel<WordsViewModel>()
 
     private val adapter = Adapter()
 
     fun getData() {
-        viewModel.getData(app.searchWord)
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        app.dagger.inject(this)
-        super.onCreate(savedInstanceState)
+        wordsViewModel.getData(app.searchWord)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -44,11 +35,10 @@ class WordsFragment : BaseFragment(R.layout.fragment_words) {
     }
 
     private fun initViewModel() {
-        viewModel = ViewModelProvider(this, viewModelFactory).get(WordsViewModel::class.java)
         val observer = Observer<Contract.State> {
             renderData(it)
         }
-        viewModel.getLiveData().observe(viewLifecycleOwner, observer)
+        wordsViewModel.getLiveData().observe(viewLifecycleOwner, observer)
         getData()
     }
 

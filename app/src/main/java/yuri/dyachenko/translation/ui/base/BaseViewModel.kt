@@ -1,19 +1,25 @@
 package yuri.dyachenko.translation.ui.base
 
 import androidx.lifecycle.ViewModel
-import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.disposables.Disposable
+import kotlinx.coroutines.*
 
-open class BaseViewModel : ViewModel() {
+abstract class BaseViewModel : ViewModel() {
 
-    private val disposables = CompositeDisposable()
+    protected val viewModelCoroutineScope = CoroutineScope(
+        Dispatchers.Main
+                + SupervisorJob()
+                + CoroutineExceptionHandler { _, t -> handlerError(t) }
 
-    fun Disposable.autoDispose() {
-        disposables.add(this)
-    }
+    )
 
     override fun onCleared() {
-        disposables.clear()
         super.onCleared()
+        cancelJob()
     }
+
+    protected fun cancelJob() {
+        viewModelCoroutineScope.coroutineContext.cancelChildren()
+    }
+
+    abstract fun handlerError(t: Throwable)
 }
