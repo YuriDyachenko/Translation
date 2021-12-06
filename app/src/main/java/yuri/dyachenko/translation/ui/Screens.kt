@@ -5,4 +5,5 @@ import com.github.terrakok.cicerone.Screen
 interface Screens {
 
     fun words(): Screen
+    fun timer(): Screen
 }
