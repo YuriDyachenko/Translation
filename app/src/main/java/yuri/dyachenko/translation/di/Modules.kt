@@ -12,9 +12,16 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import yuri.dyachenko.translation.api.SkyEngApi
 import yuri.dyachenko.translation.impl.RetrofitDataProviderImpl
+import yuri.dyachenko.translation.impl.timer.TimestampProviderImpl
 import yuri.dyachenko.translation.model.DataProvider
+import yuri.dyachenko.translation.model.timer.TimestampProvider
 import yuri.dyachenko.translation.ui.AppScreens
 import yuri.dyachenko.translation.ui.Screens
+import yuri.dyachenko.translation.impl.timer.ElapsedTimeCalculator
+import yuri.dyachenko.translation.impl.timer.StopwatchStateCalculator
+import yuri.dyachenko.translation.impl.timer.StopwatchStateHolder
+import yuri.dyachenko.translation.ui.timer.TimerViewModel
+import yuri.dyachenko.translation.ui.utils.TimestampMillisecondsFormatter
 import yuri.dyachenko.translation.ui.words.WordsViewModel
 
 val ciceroneModule = module {
@@ -40,6 +47,43 @@ val viewModelModule = module {
         WordsViewModel(
             dataProvider = get()
         )
+    }
+
+    viewModel {
+        TimerViewModel(
+            stopwatchStateHolder = get()
+        )
+    }
+}
+
+val timerModule = module {
+    single<TimestampProvider> {
+        TimestampProviderImpl()
+    }
+
+    factory {
+        StopwatchStateHolder(
+            stopwatchStateCalculator = get(),
+            elapsedTimeCalculator = get(),
+            timestampMillisecondsFormatter = get()
+        )
+    }
+
+    factory {
+        ElapsedTimeCalculator(
+            timestampProvider = get()
+        )
+    }
+
+    factory {
+        StopwatchStateCalculator(
+            timestampProvider = get(),
+            elapsedTimeCalculator = get()
+        )
+    }
+
+    factory {
+        TimestampMillisecondsFormatter()
     }
 }
 

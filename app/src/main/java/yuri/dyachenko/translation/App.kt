@@ -7,6 +7,7 @@ import org.koin.core.context.startKoin
 import org.koin.core.logger.Level
 import yuri.dyachenko.translation.di.ciceroneModule
 import yuri.dyachenko.translation.di.retrofitModule
+import yuri.dyachenko.translation.di.timerModule
 import yuri.dyachenko.translation.di.viewModelModule
 
 class App : Application() {
@@ -25,7 +26,8 @@ class App : Application() {
             modules(
                 ciceroneModule,
                 retrofitModule,
-                viewModelModule
+                viewModelModule,
+                timerModule
             )
         }
     }
