@@ -1,25 +1,30 @@
 package yuri.dyachenko.translation.di
 
+import androidx.room.Room
 import com.github.terrakok.cicerone.Cicerone
 import com.github.terrakok.cicerone.Router
 import com.google.gson.GsonBuilder
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import yuri.dyachenko.translation.api.SkyEngApi
 import yuri.dyachenko.translation.impl.RetrofitDataProviderImpl
-import yuri.dyachenko.translation.impl.timer.TimestampProviderImpl
-import yuri.dyachenko.translation.model.DataProvider
-import yuri.dyachenko.translation.model.timer.TimestampProvider
-import yuri.dyachenko.translation.ui.AppScreens
-import yuri.dyachenko.translation.ui.Screens
+import yuri.dyachenko.translation.impl.RoomHistoryDataProviderImpl
 import yuri.dyachenko.translation.impl.timer.ElapsedTimeCalculator
 import yuri.dyachenko.translation.impl.timer.StopwatchStateCalculator
 import yuri.dyachenko.translation.impl.timer.StopwatchStateHolder
+import yuri.dyachenko.translation.impl.timer.TimestampProviderImpl
+import yuri.dyachenko.translation.model.DataProvider
+import yuri.dyachenko.translation.model.HistoryDataProvider
+import yuri.dyachenko.translation.model.timer.TimestampProvider
+import yuri.dyachenko.translation.room.Storage
+import yuri.dyachenko.translation.ui.AppScreens
+import yuri.dyachenko.translation.ui.Screens
 import yuri.dyachenko.translation.ui.timer.TimerViewModel
 import yuri.dyachenko.translation.ui.utils.TimestampMillisecondsFormatter
 import yuri.dyachenko.translation.ui.words.WordsViewModel
@@ -111,6 +116,19 @@ val retrofitModule = module {
     }
 
     single<DataProvider> {
-        RetrofitDataProviderImpl(get())
+        RetrofitDataProviderImpl(api = get())
+    }
+}
+
+val roomModule = module {
+    val dbName = "storage.db"
+
+    single {
+        Room.databaseBuilder(androidContext(), Storage::class.java, dbName)
+            .build()
+    }
+
+    factory<HistoryDataProvider> {
+        RoomHistoryDataProviderImpl(storage = get())
     }
 }
