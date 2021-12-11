@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        savedInstanceState ?: router.newRootScreen(screens.timer())
+        savedInstanceState ?: router.newRootScreen(screens.words())
     }
 
     override fun onPause() {
