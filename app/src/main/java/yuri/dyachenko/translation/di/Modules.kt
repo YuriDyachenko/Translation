@@ -25,6 +25,7 @@ import yuri.dyachenko.translation.model.timer.TimestampProvider
 import yuri.dyachenko.translation.room.Storage
 import yuri.dyachenko.translation.ui.AppScreens
 import yuri.dyachenko.translation.ui.Screens
+import yuri.dyachenko.translation.ui.history.HistoryViewModel
 import yuri.dyachenko.translation.ui.timer.TimerViewModel
 import yuri.dyachenko.translation.ui.utils.TimestampMillisecondsFormatter
 import yuri.dyachenko.translation.ui.words.WordsViewModel
@@ -57,6 +58,12 @@ val viewModelModule = module {
     viewModel {
         TimerViewModel(
             stopwatchStateHolder = get()
+        )
+    }
+
+    viewModel {
+        HistoryViewModel(
+            dataProvider = get()
         )
     }
 }
