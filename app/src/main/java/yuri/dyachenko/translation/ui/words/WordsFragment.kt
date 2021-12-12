@@ -6,9 +6,12 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
+import com.github.terrakok.cicerone.Router
+import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import yuri.dyachenko.translation.*
 import yuri.dyachenko.translation.databinding.FragmentWordsBinding
+import yuri.dyachenko.translation.ui.Screens
 import yuri.dyachenko.translation.ui.base.BaseFragment
 import yuri.dyachenko.translation.ui.search.SearchDialogFragment
 import yuri.dyachenko.translation.ui.utils.app
@@ -21,7 +24,13 @@ class WordsFragment : BaseFragment(R.layout.fragment_words) {
 
     private val wordsViewModel by viewModel<WordsViewModel>()
 
-    private val adapter = Adapter()
+    private val router by inject<Router>()
+
+    private val screens by inject<Screens>()
+
+    private val adapter = Adapter {
+        router.navigateTo(screens.word(it))
+    }
 
     fun getData() {
         wordsViewModel.getData(app.searchWord)

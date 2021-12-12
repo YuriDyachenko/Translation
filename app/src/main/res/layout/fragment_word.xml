@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="@dimen/margin_10"
+    android:orientation="vertical"
+    tools:context=".ui.word.WordFragment">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/word_text_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="@dimen/margin_5"
+        android:textColor="?attr/colorPrimary"
+        android:textSize="@dimen/word_text_text_size"
+        tools:text="word" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/word_meanings_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/margin_5"
+        android:textColor="?attr/colorPrimaryDark"
+        android:textSize="@dimen/word_meanings_text_size"
+        tools:text="meaning" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/word_meaning_image_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginVertical="@dimen/margin_10"
+        android:scaleType="fitXY" />
+
+</androidx.appcompat.widget.LinearLayoutCompat>

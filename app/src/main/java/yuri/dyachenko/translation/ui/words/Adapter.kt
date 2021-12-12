@@ -9,7 +9,9 @@ import yuri.dyachenko.translation.databinding.WordsItemLayoutBinding
 import yuri.dyachenko.translation.model.Word
 import yuri.dyachenko.translation.ui.utils.meaningsToString
 
-class Adapter : RecyclerView.Adapter<Adapter.ViewHolder>() {
+class Adapter(
+    private val onChoiceItem: (Word) -> Unit
+) : RecyclerView.Adapter<Adapter.ViewHolder>() {
 
     private var words: MutableList<Word> = mutableListOf()
 
@@ -38,6 +40,7 @@ class Adapter : RecyclerView.Adapter<Adapter.ViewHolder>() {
                 itemView.apply {
                     wordsTextTextView.text = word.text
                     wordsMeaningsTextView.text = meaningsToString(word.meanings)
+                    setOnClickListener { onChoiceItem(word) }
                 }
             }
         }

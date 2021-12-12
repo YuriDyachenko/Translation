@@ -1,8 +1,10 @@
 package yuri.dyachenko.translation.ui
 
 import com.github.terrakok.cicerone.androidx.FragmentScreen
+import yuri.dyachenko.translation.model.Word
 import yuri.dyachenko.translation.ui.history.HistoryFragment
 import yuri.dyachenko.translation.ui.timer.TimerFragment
+import yuri.dyachenko.translation.ui.word.WordFragment
 import yuri.dyachenko.translation.ui.words.WordsFragment
 
 class AppScreens : Screens {
@@ -11,4 +13,6 @@ class AppScreens : Screens {
     override fun timer() = FragmentScreen { TimerFragment.newInstance() }
     override fun history(onChoiceFromHistory: (String) -> Unit) =
         FragmentScreen { HistoryFragment.newInstance(onChoiceFromHistory) }
+
+    override fun word(word: Word) = FragmentScreen { WordFragment.newInstance(word) }
 }

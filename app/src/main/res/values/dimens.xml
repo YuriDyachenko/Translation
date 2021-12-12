@@ -5,4 +5,6 @@
     <dimen name="words_meanings_text_size">18sp</dimen>
     <dimen name="margin_5">5dp</dimen>
     <dimen name="bottom_sheet_search_dialog_layout_height">200dp</dimen>
+    <dimen name="word_text_text_size">28sp</dimen>
+    <dimen name="word_meanings_text_size">24sp</dimen>
 </resources>
