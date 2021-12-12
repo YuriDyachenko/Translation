@@ -133,6 +133,7 @@ val roomModule = module {
 
     single {
         Room.databaseBuilder(androidContext(), Storage::class.java, dbName)
+            .fallbackToDestructiveMigration()
             .build()
     }
 

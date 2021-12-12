@@ -10,7 +10,7 @@ import yuri.dyachenko.translation.model.dao.HistoryDao
 @Database(
     exportSchema = false,
     entities = [HistoryEntity::class],
-    version = 1
+    version = 2
 )
 @TypeConverters(DataConverter::class)
 abstract class Storage : RoomDatabase() {

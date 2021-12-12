@@ -20,11 +20,6 @@ class WordsViewModel(
     fun getData(searchWord: String) {
         liveDataToObserve.value = Contract.State.Loading
 
-        if (searchWord.isEmpty()) {
-            liveDataToObserve.value = Contract.State.Success(listOf())
-            return
-        }
-
         cancelJob()
 
         viewModelCoroutineScope.launch {

@@ -39,12 +39,17 @@ class WordsFragment : BaseFragment(R.layout.fragment_words) {
             renderData(it)
         }
         wordsViewModel.getLiveData().observe(viewLifecycleOwner, observer)
-        getData()
     }
 
     private fun initSearchFab() = with(binding) {
         wordsSearchFab.setOnClickListener {
-            val searchDialogFragment = SearchDialogFragment.newInstance(app.searchWord)
+            val searchDialogFragment = SearchDialogFragment.newInstance(
+                app.searchWord
+            ) {
+                app.searchWord = it
+                getData()
+            }
+
             searchDialogFragment.setOnSearchClickListener(
                 object : SearchDialogFragment.OnSearchClickListener {
                     override fun onClick(searchWord: String) {

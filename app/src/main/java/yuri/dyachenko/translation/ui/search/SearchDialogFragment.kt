@@ -28,6 +28,8 @@ class SearchDialogFragment : BottomSheetDialogFragment() {
         arguments?.getString(ARG_OLD_WORD).orEmpty()
     }
 
+    private lateinit var onChoiceFromHistory: (String) -> Unit
+
     private var onSearchClickListener: OnSearchClickListener? = null
 
     private val textWatcher = object : TextWatcher {
@@ -79,7 +81,7 @@ class SearchDialogFragment : BottomSheetDialogFragment() {
         addOnClearClickListener()
 
         historyButtonTextview.setOnClickListener {
-            router.navigateTo(screens.history())
+            router.navigateTo(screens.history(onChoiceFromHistory))
             dismiss()
         }
     }
@@ -104,8 +106,11 @@ class SearchDialogFragment : BottomSheetDialogFragment() {
     companion object {
         private const val ARG_OLD_WORD = "ARG_OLD_WORD"
 
-        fun newInstance(oldWord: String) =
+        fun newInstance(oldWord: String, onChoiceFromHistory: (String) -> Unit) =
             SearchDialogFragment()
+                .apply {
+                    this.onChoiceFromHistory = onChoiceFromHistory
+                }
                 .arguments(ARG_OLD_WORD to oldWord)
     }
 }

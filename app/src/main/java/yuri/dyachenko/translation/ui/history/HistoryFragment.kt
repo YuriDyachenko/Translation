@@ -6,6 +6,8 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
+import com.github.terrakok.cicerone.Router
+import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import yuri.dyachenko.translation.*
 import yuri.dyachenko.translation.databinding.FragmentHistoryBinding
@@ -19,9 +21,13 @@ class HistoryFragment : BaseFragment(R.layout.fragment_history) {
 
     private val wordsViewModel by viewModel<HistoryViewModel>()
 
-    private val adapter = Adapter()
+    private val router by inject<Router>()
 
-    fun getData() {
+    private lateinit var onChoiceFromHistory: (String) -> Unit
+
+    private lateinit var adapter: Adapter
+
+    private fun getData() {
         wordsViewModel.getData()
     }
 
@@ -40,6 +46,10 @@ class HistoryFragment : BaseFragment(R.layout.fragment_history) {
     }
 
     private fun initRecycler() = with(binding.historyRecyclerView) {
+        this@HistoryFragment.adapter = Adapter {
+            onChoiceFromHistory.invoke(it)
+            router.exit()
+        }
         addItemDecoration(DividerItemDecoration(context, LinearLayoutManager.VERTICAL))
         adapter = this@HistoryFragment.adapter
     }
@@ -66,6 +76,9 @@ class HistoryFragment : BaseFragment(R.layout.fragment_history) {
     }
 
     companion object {
-        fun newInstance() = HistoryFragment()
+        fun newInstance(onChoiceFromHistory: (String) -> Unit) =
+            HistoryFragment().apply {
+                this.onChoiceFromHistory = onChoiceFromHistory
+            }
     }
 }

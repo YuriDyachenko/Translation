@@ -9,5 +9,6 @@ class AppScreens : Screens {
 
     override fun words() = FragmentScreen { WordsFragment.newInstance() }
     override fun timer() = FragmentScreen { TimerFragment.newInstance() }
-    override fun history() = FragmentScreen { HistoryFragment.newInstance() }
+    override fun history(onChoiceFromHistory: (String) -> Unit) =
+        FragmentScreen { HistoryFragment.newInstance(onChoiceFromHistory) }
 }

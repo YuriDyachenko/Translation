@@ -9,7 +9,9 @@ import yuri.dyachenko.translation.databinding.HistoryItemLayoutBinding
 import yuri.dyachenko.translation.model.HistoryEntity
 import yuri.dyachenko.translation.ui.utils.format
 
-class Adapter : RecyclerView.Adapter<Adapter.ViewHolder>() {
+class Adapter(
+    private val onClick: (String) -> Unit
+) : RecyclerView.Adapter<Adapter.ViewHolder>() {
 
     private var entities: MutableList<HistoryEntity> = mutableListOf()
 
@@ -38,6 +40,7 @@ class Adapter : RecyclerView.Adapter<Adapter.ViewHolder>() {
                 itemView.apply {
                     val text = "${entity.searchDate.format()}: ${entity.word}"
                     historyItemTextView.text = text
+                    setOnClickListener { onClick(entity.word) }
                 }
             }
         }

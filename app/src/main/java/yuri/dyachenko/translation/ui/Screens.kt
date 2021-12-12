@@ -6,5 +6,5 @@ interface Screens {
 
     fun words(): Screen
     fun timer(): Screen
-    fun history(): Screen
+    fun history(onChoiceFromHistory: (String) -> Unit): Screen
 }
