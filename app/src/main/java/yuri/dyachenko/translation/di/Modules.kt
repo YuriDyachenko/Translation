@@ -51,7 +51,8 @@ val ciceroneModule = module {
 val viewModelModule = module {
     viewModel {
         WordsViewModel(
-            dataProvider = get()
+            dataProvider = get(),
+            historyDataProvider = get()
         )
     }
 

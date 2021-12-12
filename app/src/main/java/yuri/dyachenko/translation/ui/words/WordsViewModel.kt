@@ -5,10 +5,12 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import yuri.dyachenko.translation.model.DataProvider
+import yuri.dyachenko.translation.model.HistoryDataProvider
 import yuri.dyachenko.translation.ui.base.BaseViewModel
 
 class WordsViewModel(
-    private val dataProvider: DataProvider
+    private val dataProvider: DataProvider,
+    private val historyDataProvider: HistoryDataProvider
 ) : BaseViewModel() {
 
     private val liveDataToObserve: MutableLiveData<Contract.State> = MutableLiveData()
@@ -27,6 +29,7 @@ class WordsViewModel(
 
         viewModelCoroutineScope.launch {
             withContext(Dispatchers.IO) {
+                historyDataProvider.saveHistory(searchWord)
                 liveDataToObserve.postValue(Contract.State.Success(dataProvider.search(searchWord)))
             }
         }
