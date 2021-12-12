@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Translator 04</string>
+    <string name="app_name">Translator 05</string>
     <string name="something_broke">Something broke</string>
     <string name="reload">Reload</string>
     <string name="words_fab_content_description">Enter new word for search</string>
@@ -9,4 +9,5 @@
     <string name="timer_start_button">Start</string>
     <string name="timer_pause_button">Pause</string>
     <string name="timer_stop_button">Stop</string>
+    <string name="history_text">Choice from history</string>
 </resources>

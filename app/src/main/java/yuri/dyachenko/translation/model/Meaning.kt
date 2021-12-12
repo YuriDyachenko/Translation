@@ -7,4 +7,6 @@ data class Meaning(
     val text: String?,
     @SerializedName("translation")
     val translation: Translation?,
+    @field:SerializedName("imageUrl")
+    val imageUrl: String?
 )

@@ -10,16 +10,35 @@
     android:orientation="vertical"
     tools:context=".ui.search.SearchDialogFragment">
 
-    <TextView
-        android:id="@+id/search_button_textview"
-        android:layout_width="wrap_content"
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="end"
-        android:layout_marginTop="@dimen/margin_10"
-        android:layout_marginEnd="@dimen/margin_10"
-        android:text="@string/search_text"
-        android:textColor="?attr/colorPrimary"
-        android:textSize="22sp" />
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/history_button_textview"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_10"
+            android:layout_marginTop="@dimen/margin_10"
+            android:layout_weight="1"
+            android:text="@string/history_text"
+            android:textColor="?attr/colorPrimaryDark"
+            android:textSize="22sp" />
+
+        <TextView
+            android:id="@+id/search_button_textview"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_10"
+            android:layout_marginEnd="@dimen/margin_10"
+            android:layout_weight="1"
+            android:gravity="end"
+            android:text="@string/search_text"
+            android:textColor="?attr/colorPrimary"
+            android:textSize="22sp" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
     <FrameLayout
         android:layout_width="match_parent"

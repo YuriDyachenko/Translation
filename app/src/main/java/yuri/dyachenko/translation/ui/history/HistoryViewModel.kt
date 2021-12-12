@@ -1,31 +1,28 @@
-package yuri.dyachenko.translation.ui.words
+package yuri.dyachenko.translation.ui.history
 
 import androidx.lifecycle.MutableLiveData
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import yuri.dyachenko.translation.model.DataProvider
 import yuri.dyachenko.translation.model.HistoryDataProvider
 import yuri.dyachenko.translation.ui.base.BaseViewModel
 
-class WordsViewModel(
-    private val dataProvider: DataProvider,
-    private val historyDataProvider: HistoryDataProvider
+class HistoryViewModel(
+    private val dataProvider: HistoryDataProvider
 ) : BaseViewModel() {
 
     private val liveDataToObserve: MutableLiveData<Contract.State> = MutableLiveData()
 
     fun getLiveData() = liveDataToObserve
 
-    fun getData(searchWord: String) {
+    fun getData() {
         liveDataToObserve.value = Contract.State.Loading
 
         cancelJob()
 
         viewModelCoroutineScope.launch {
             withContext(Dispatchers.IO) {
-                historyDataProvider.saveHistory(searchWord)
-                liveDataToObserve.postValue(Contract.State.Success(dataProvider.search(searchWord)))
+                liveDataToObserve.postValue(Contract.State.Success(dataProvider.getAllHistory()))
             }
         }
     }

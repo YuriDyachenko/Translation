@@ -2,10 +2,10 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/words_root_view"
+    android:id="@+id/history_root_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.words.WordsFragment">
+    tools:context=".ui.history.HistoryFragment">
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
@@ -13,26 +13,16 @@
         android:orientation="vertical">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/words_recycler_view"
+            android:id="@+id/history_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/words_item_layout" />
+            tools:listitem="@layout/history_item_layout" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/words_search_fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_marginEnd="@dimen/margin_10"
-        android:layout_marginBottom="@dimen/margin_10"
-        android:contentDescription="@string/words_fab_content_description"
-        android:src="@android:drawable/ic_menu_search" />
-
     <FrameLayout
-        android:id="@+id/words_loading_layout"
+        android:id="@+id/history_loading_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -40,7 +30,6 @@
             style="?android:attr/progressBarStyleLarge"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:visibility="gone" />
+            android:layout_gravity="center" />
     </FrameLayout>
 </FrameLayout>
