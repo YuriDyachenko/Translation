@@ -1,3 +1,5 @@
+import org.gradle.api.JavaVersion
+
 object Config {
     const val applicationId = "yuri.dyachenko.translation"
     const val compileSdk = 31
@@ -5,6 +7,7 @@ object Config {
     const val targetSdk = 31
     const val versionCode = 1
     const val versionName = "1.0"
+    val java_version = JavaVersion.VERSION_1_8
 }
 
 object Versions {
@@ -23,6 +26,9 @@ object Versions {
     const val cicerone = "7.1"
     const val coroutines = "1.5.2"
     const val interceptor = "4.9.2"
+    const val jUnit = "4.13.2"
+    const val ext = "1.1.3"
+    const val espressoCore = "3.4.0"
 }
 
 object ViewBinding {
@@ -72,4 +78,10 @@ object Room {
     const val ktx = "androidx.room:room-ktx:${Versions.room}"
     const val rxjava2 = "androidx.room:room-rxjava2:${Versions.room}"
     const val kapt = "androidx.room:room-compiler:${Versions.room}"
+}
+
+object TestImpl {
+    const val junit = "junit:junit:${Versions.jUnit}"
+    const val ext = "androidx.test.ext:junit:${Versions.ext}"
+    const val espresso = "androidx.test.espresso:espresso-core:${Versions.espressoCore}"
 }
