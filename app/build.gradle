@@ -5,14 +5,14 @@ plugins {
 }
 
 android {
-    compileSdk 31
+    compileSdk Config.compileSdk
 
     defaultConfig {
-        applicationId "yuri.dyachenko.translation"
-        minSdk 24
-        targetSdk 31
-        versionCode 1
-        versionName "1.0"
+        applicationId Config.applicationId
+        minSdk Config.minSdk
+        targetSdk Config.targetSdk
+        versionCode Config.versionCode
+        versionName Config.versionName
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -37,45 +37,34 @@ android {
 
 dependencies {
 
-    //viewBinding
-    implementation 'com.github.kirich1409:viewbindingpropertydelegate-noreflection:1.5.0-beta01'
+    implementation ViewBinding.kirich1409
 
-    //Kotlin
-    implementation 'androidx.core:core-ktx:1.7.0'
+    implementation Kotlin.core
 
-    //Android
-    implementation 'androidx.appcompat:appcompat:1.4.0'
-    implementation 'com.google.android.material:material:1.4.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.2'
-    implementation 'androidx.recyclerview:recyclerview:1.2.1'
+    implementation Android.appcompat
+    implementation Android.material
+    implementation Android.constraintlayout
+    implementation Android.recyclerview
 
-    //Cicerone
-    implementation 'com.github.terrakok:cicerone:7.1'
+    implementation Cicerone.core
 
-    //Coroutines
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.2"
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.2'
+    implementation Coroutines.core
 
-    //Retrofit
-    implementation "com.squareup.retrofit2:converter-gson:2.9.0"
-    implementation "com.squareup.retrofit2:retrofit:2.9.0"
-    implementation 'com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:0.9.2'
+    implementation Retrofit.core
+    implementation Retrofit.gson
+    implementation Retrofit.coroutines
 
-    //logging
-    implementation 'com.squareup.okhttp3:logging-interceptor:4.9.2'
+    implementation LoggingInterceptor.core
 
-    //Koin
-    implementation "io.insert-koin:koin-core:3.1.3"
-    implementation "io.insert-koin:koin-android:3.1.3"
+    implementation Koin.core
+    implementation Koin.android
 
-    //Room
-    implementation "androidx.room:room-runtime:2.3.0"
-    implementation "androidx.room:room-ktx:2.3.0"
-    implementation "androidx.room:room-rxjava2:2.3.0"
-    kapt "androidx.room:room-compiler:2.3.0"
+    implementation Room.runtime
+    implementation Room.ktx
+    implementation Room.rxjava2
+    kapt Room.kapt
 
-    //Picasso
-    implementation 'com.squareup.picasso:picasso:2.71828'
+    implementation Picasso.core
 
     //Tests
     testImplementation 'junit:junit:4.13.2'
