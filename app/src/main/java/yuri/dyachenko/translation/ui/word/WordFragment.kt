@@ -8,9 +8,8 @@ import yuri.dyachenko.model.Word
 import yuri.dyachenko.model.meaningsToString
 import yuri.dyachenko.translation.R
 import yuri.dyachenko.translation.databinding.FragmentWordBinding
-import yuri.dyachenko.translation.ui.base.BaseFragment
 
-class WordFragment : BaseFragment(R.layout.fragment_word) {
+class WordFragment : yuri.dyachenko.base.BaseFragment(R.layout.fragment_word) {
 
     private val binding by viewBinding(FragmentWordBinding::bind)
 

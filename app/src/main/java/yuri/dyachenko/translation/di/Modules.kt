@@ -12,22 +12,22 @@ import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import yuri.dyachenko.timer.impl.ElapsedTimeCalculator
+import yuri.dyachenko.timer.impl.StopwatchStateCalculator
+import yuri.dyachenko.timer.impl.StopwatchStateHolder
+import yuri.dyachenko.timer.impl.TimestampProviderImpl
+import yuri.dyachenko.timer.model.TimestampProvider
+import yuri.dyachenko.timer.ui.TimestampMillisecondsFormatter
+import yuri.dyachenko.timer.ui.view.TimerViewModel
 import yuri.dyachenko.translation.api.SkyEngApi
 import yuri.dyachenko.translation.impl.RetrofitDataProviderImpl
 import yuri.dyachenko.translation.impl.RoomHistoryDataProviderImpl
-import yuri.dyachenko.translation.impl.timer.ElapsedTimeCalculator
-import yuri.dyachenko.translation.impl.timer.StopwatchStateCalculator
-import yuri.dyachenko.translation.impl.timer.StopwatchStateHolder
-import yuri.dyachenko.translation.impl.timer.TimestampProviderImpl
 import yuri.dyachenko.translation.model.DataProvider
 import yuri.dyachenko.translation.model.HistoryDataProvider
-import yuri.dyachenko.translation.model.timer.TimestampProvider
 import yuri.dyachenko.translation.room.Storage
 import yuri.dyachenko.translation.ui.AppScreens
 import yuri.dyachenko.translation.ui.Screens
 import yuri.dyachenko.translation.ui.history.HistoryViewModel
-import yuri.dyachenko.translation.ui.timer.TimerViewModel
-import yuri.dyachenko.translation.ui.utils.TimestampMillisecondsFormatter
 import yuri.dyachenko.translation.ui.words.WordsViewModel
 
 val ciceroneModule = module {

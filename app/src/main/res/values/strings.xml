@@ -6,8 +6,5 @@
     <string name="search_clear_text">Clear text</string>
     <string name="search_input_hint">word for search</string>
     <string name="search_text">Search</string>
-    <string name="timer_start_button">Start</string>
-    <string name="timer_pause_button">Pause</string>
-    <string name="timer_stop_button">Stop</string>
     <string name="history_text">Choice from history</string>
 </resources>

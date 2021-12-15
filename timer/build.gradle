@@ -1,20 +1,19 @@
 plugins {
-    id 'com.android.application'
+    id 'com.android.library'
     id 'kotlin-android'
-    id 'kotlin-kapt'
 }
 
 android {
     compileSdk Config.compileSdk
 
     defaultConfig {
-        applicationId Config.applicationId
         minSdk Config.minSdk
         targetSdk Config.targetSdk
         versionCode Config.versionCode
         versionName Config.versionName
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
     }
 
     buildTypes {
@@ -31,10 +30,7 @@ android {
 }
 
 dependencies {
-
-    implementation project(":model")
     implementation project(":base")
-    implementation project(":timer")
 
     implementation ViewBinding.kirich1409
 
@@ -43,27 +39,11 @@ dependencies {
     implementation Android.appcompat
     implementation Android.material
     implementation Android.constraintlayout
-    implementation Android.recyclerview
-
-    implementation Cicerone.core
 
     implementation Coroutines.core
 
-    implementation Retrofit.core
-    implementation Retrofit.gson
-    implementation Retrofit.coroutines
-
-    implementation LoggingInterceptor.core
-
     implementation Koin.core
     implementation Koin.android
-
-    implementation Room.runtime
-    implementation Room.ktx
-    implementation Room.rxjava2
-    kapt Room.kapt
-
-    implementation Picasso.core
 
     testImplementation TestImpl.junit
     androidTestImplementation TestImpl.ext

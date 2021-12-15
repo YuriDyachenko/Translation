@@ -9,10 +9,10 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import com.github.terrakok.cicerone.Router
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import yuri.dyachenko.base.BaseFragment
 import yuri.dyachenko.translation.*
 import yuri.dyachenko.translation.databinding.FragmentWordsBinding
 import yuri.dyachenko.translation.ui.Screens
-import yuri.dyachenko.translation.ui.base.BaseFragment
 import yuri.dyachenko.translation.ui.search.SearchDialogFragment
 import yuri.dyachenko.translation.ui.utils.app
 import yuri.dyachenko.translation.ui.utils.hide
