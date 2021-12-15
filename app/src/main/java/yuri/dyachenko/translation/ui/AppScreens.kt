@@ -1,9 +1,9 @@
 package yuri.dyachenko.translation.ui
 
 import com.github.terrakok.cicerone.androidx.FragmentScreen
-import yuri.dyachenko.translation.model.Word
+import yuri.dyachenko.model.Word
+import yuri.dyachenko.timer.ui.view.TimerFragment
 import yuri.dyachenko.translation.ui.history.HistoryFragment
-import yuri.dyachenko.translation.ui.timer.TimerFragment
 import yuri.dyachenko.translation.ui.word.WordFragment
 import yuri.dyachenko.translation.ui.words.WordsFragment
 

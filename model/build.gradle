@@ -1,0 +1,41 @@
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+}
+
+android {
+    compileSdk Config.compileSdk
+
+    defaultConfig {
+        minSdk Config.minSdk
+        targetSdk Config.targetSdk
+        versionCode Config.versionCode
+        versionName Config.versionName
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility Config.java_version
+        targetCompatibility Config.java_version
+    }
+}
+
+dependencies {
+
+    implementation Kotlin.core
+
+    implementation Retrofit.gson
+
+    testImplementation TestImpl.junit
+    androidTestImplementation TestImpl.ext
+    androidTestImplementation TestImpl.espresso
+}

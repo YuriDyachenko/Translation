@@ -1,6 +1,6 @@
 package yuri.dyachenko.translation.ui.words
 
-import yuri.dyachenko.translation.model.Word
+import yuri.dyachenko.model.Word
 
 class Contract {
 

@@ -1,0 +1,7 @@
+<resources>
+    <string name="something_broke">Something broke</string>
+    <string name="reload">Reload</string>
+    <string name="timer_start_button">Start</string>
+    <string name="timer_pause_button">Pause</string>
+    <string name="timer_stop_button">Stop</string>
+</resources>

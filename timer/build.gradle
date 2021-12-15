@@ -1,0 +1,51 @@
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+}
+
+android {
+    compileSdk Config.compileSdk
+
+    defaultConfig {
+        minSdk Config.minSdk
+        targetSdk Config.targetSdk
+        versionCode Config.versionCode
+        versionName Config.versionName
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility Config.java_version
+        targetCompatibility Config.java_version
+    }
+}
+
+dependencies {
+    implementation project(":base")
+
+    implementation ViewBinding.kirich1409
+
+    implementation Kotlin.core
+
+    implementation Android.appcompat
+    implementation Android.material
+    implementation Android.constraintlayout
+
+    implementation Coroutines.core
+
+    implementation Koin.core
+    implementation Koin.android
+
+    testImplementation TestImpl.junit
+    androidTestImplementation TestImpl.ext
+    androidTestImplementation TestImpl.espresso
+}

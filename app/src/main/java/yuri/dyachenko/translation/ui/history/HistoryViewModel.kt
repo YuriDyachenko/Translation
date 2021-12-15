@@ -4,8 +4,8 @@ import androidx.lifecycle.MutableLiveData
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import yuri.dyachenko.base.BaseViewModel
 import yuri.dyachenko.translation.model.HistoryDataProvider
-import yuri.dyachenko.translation.ui.base.BaseViewModel
 
 class HistoryViewModel(
     private val dataProvider: HistoryDataProvider

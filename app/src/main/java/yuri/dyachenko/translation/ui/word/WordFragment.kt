@@ -4,13 +4,12 @@ import android.os.Bundle
 import android.view.View
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.squareup.picasso.Picasso
+import yuri.dyachenko.model.Word
+import yuri.dyachenko.model.meaningsToString
 import yuri.dyachenko.translation.R
 import yuri.dyachenko.translation.databinding.FragmentWordBinding
-import yuri.dyachenko.translation.model.Word
-import yuri.dyachenko.translation.ui.base.BaseFragment
-import yuri.dyachenko.translation.ui.utils.meaningsToString
 
-class WordFragment : BaseFragment(R.layout.fragment_word) {
+class WordFragment : yuri.dyachenko.base.BaseFragment(R.layout.fragment_word) {
 
     private val binding by viewBinding(FragmentWordBinding::bind)
 
