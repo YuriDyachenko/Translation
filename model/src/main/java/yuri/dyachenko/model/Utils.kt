@@ -1,6 +1,4 @@
-package yuri.dyachenko.translation.ui.utils
-
-import yuri.dyachenko.translation.model.Meaning
+package yuri.dyachenko.model
 
 fun meaningsToString(meanings: List<Meaning>?) = meanings?.let {
     val sb = StringBuilder()

@@ -1,7 +1,7 @@
 package yuri.dyachenko.translation.ui
 
 import com.github.terrakok.cicerone.Screen
-import yuri.dyachenko.translation.model.Word
+import yuri.dyachenko.model.Word
 
 interface Screens {
 

@@ -4,10 +4,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import yuri.dyachenko.model.Word
+import yuri.dyachenko.model.meaningsToString
 import yuri.dyachenko.translation.R
 import yuri.dyachenko.translation.databinding.WordsItemLayoutBinding
-import yuri.dyachenko.translation.model.Word
-import yuri.dyachenko.translation.ui.utils.meaningsToString
 
 class Adapter(
     private val onChoiceItem: (Word) -> Unit

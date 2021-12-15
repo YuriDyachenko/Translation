@@ -1,4 +1,4 @@
-package yuri.dyachenko.translation.model
+package yuri.dyachenko.model
 
 import com.google.gson.annotations.SerializedName
 
