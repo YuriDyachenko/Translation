@@ -8,17 +8,21 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.github.terrakok.cicerone.Router
 import org.koin.android.ext.android.inject
+import org.koin.android.scope.AndroidScopeComponent
+import org.koin.androidx.scope.fragmentScope
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.core.scope.Scope
 import yuri.dyachenko.base.BaseFragment
 import yuri.dyachenko.translation.*
 import yuri.dyachenko.translation.databinding.FragmentHistoryBinding
 import yuri.dyachenko.translation.ui.utils.hide
 import yuri.dyachenko.translation.ui.utils.show
 
-class HistoryFragment : BaseFragment(R.layout.fragment_history) {
+class HistoryFragment : BaseFragment(R.layout.fragment_history), AndroidScopeComponent {
 
     private val binding by viewBinding(FragmentHistoryBinding::bind)
 
+    override val scope: Scope by fragmentScope()
     private val wordsViewModel by viewModel<HistoryViewModel>()
 
     private val router by inject<Router>()
