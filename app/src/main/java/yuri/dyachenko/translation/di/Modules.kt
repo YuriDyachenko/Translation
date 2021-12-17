@@ -29,6 +29,7 @@ import yuri.dyachenko.translation.model.HistoryDataProvider
 import yuri.dyachenko.translation.room.Storage
 import yuri.dyachenko.translation.ui.AppScreens
 import yuri.dyachenko.translation.ui.Screens
+import yuri.dyachenko.translation.ui.history.HistoryFragment
 import yuri.dyachenko.translation.ui.history.HistoryViewModel
 import yuri.dyachenko.translation.ui.words.WordsViewModel
 
@@ -66,10 +67,12 @@ val viewModelModule = module {
         }
     }
 
-    viewModel {
-        HistoryViewModel(
-            dataProvider = get()
-        )
+    scope(named<HistoryFragment>()) {
+        viewModel {
+            HistoryViewModel(
+                dataProvider = get()
+            )
+        }
     }
 }
 
