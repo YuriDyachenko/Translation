@@ -84,6 +84,11 @@ class SearchDialogFragment : BottomSheetDialogFragment() {
             router.navigateTo(screens.history(onChoiceFromHistory))
             dismiss()
         }
+
+        timerButtonTextview.setOnClickListener {
+            router.navigateTo(screens.timer())
+            dismiss()
+        }
     }
 
     override fun onDestroyView() {

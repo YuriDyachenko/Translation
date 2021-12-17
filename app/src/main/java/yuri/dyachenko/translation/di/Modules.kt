@@ -9,6 +9,7 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
+import org.koin.core.qualifier.named
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -18,6 +19,7 @@ import yuri.dyachenko.timer.impl.StopwatchStateHolder
 import yuri.dyachenko.timer.impl.TimestampProviderImpl
 import yuri.dyachenko.timer.model.TimestampProvider
 import yuri.dyachenko.timer.ui.TimestampMillisecondsFormatter
+import yuri.dyachenko.timer.ui.view.TimerFragment
 import yuri.dyachenko.timer.ui.view.TimerViewModel
 import yuri.dyachenko.translation.api.SkyEngApi
 import yuri.dyachenko.translation.impl.RetrofitDataProviderImpl
@@ -56,10 +58,12 @@ val viewModelModule = module {
         )
     }
 
-    viewModel {
-        TimerViewModel(
-            stopwatchStateHolder = get()
-        )
+    scope(named<TimerFragment>()) {
+        viewModel {
+            TimerViewModel(
+                stopwatchStateHolder = get()
+            )
+        }
     }
 
     viewModel {
