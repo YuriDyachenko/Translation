@@ -1,11 +1,13 @@
 package yuri.dyachenko.translation.ui
 
 import android.animation.ObjectAnimator
+import android.os.Build
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.view.View
 import android.view.ViewTreeObserver
 import android.view.animation.LinearInterpolator
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.animation.doOnEnd
 import com.github.terrakok.cicerone.NavigatorHolder
@@ -40,10 +42,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setDefaultSplashScreen() {
-        setSplashScreenHideAnimation()
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            setSplashScreenHideAnimation()
+        }
         setSplashScreenDuration()
     }
 
+    @RequiresApi(Build.VERSION_CODES.S)
     private fun setSplashScreenHideAnimation() {
         splashScreen.setOnExitAnimationListener { splashScreenView ->
             val slideLeft = ObjectAnimator.ofFloat(
